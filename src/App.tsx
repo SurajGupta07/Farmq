@@ -44,6 +44,7 @@ function App() {
   return (
       <div className="App">
           <Header username={'Suraj'} score={state.score}/>
+          <div className="bodyContainer">
           <h2>Current Question: {state.currentQuestionNo}</h2>
           {user && <p>{user.name}</p>}
           {error && <p>{error.errorMessage}</p>}
@@ -60,7 +61,7 @@ function App() {
           <button onClick={() => {
             dispatch({ type: 'RESET' })
           }}>Reset</button>
-      
+          </div>      
       </div>
   );
 }

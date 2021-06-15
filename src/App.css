@@ -36,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+
+/* Header Styles */
+.nav_logo {
+  text-decoration: none;
+  margin-left: 5rem;
+  font-size: xx-large;
+  font-weight: 550;
+  color: #8B5CF6;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 20%);
+}
+
+.headerUser{
+  margin: auto;
+  text-decoration: none;
+  font-size: xx-large;
+  font-weight: 500;
+  color: #8B5CF6;
+}
+
+.headerScore{
+  margin-right: 1rem;
+  text-decoration: none;
+  font-size: xx-large;
+  font-weight: 500;
+  color: #8B5CF6;
+}
+
+/* Body */
+
+.bodyContainer{
+  margin-top: 7rem !important;
+  z-index: 5;
+}
