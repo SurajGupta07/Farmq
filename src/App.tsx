@@ -1,25 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useReducer, useEffect } from 'react';
 import './App.css';
+import { Header } from '../src/components/Header'
+import { quizReducer, initialQuizState } from "../src/reducers/quiz-reducer"
+import axios, { AxiosError } from "axios";
+
+type User = { name: string, age: number }
+
+type ServerError = { errorMessage: string }
+
+async function getUser(): Promise<User | ServerError>{
+ try {
+  const response = await axios.get<User>("https://be-ask.tanaypratap.repl.co/test");
+  return response.data
+ } catch (error){
+    if(axios.isAxiosError(error)){
+      const serverError = ( error as AxiosError<ServerError> )
+      if(serverError && serverError.response){
+        return serverError.response.data
+      }
+    }
+    console.error(error)
+    return {errorMessage: "something went wrong"};
+}
+}
+
+getUser();
 
 function App() {
+  const [ user, setUser ] = useState<User | null>(null)
+  const [state, dispatch] = useReducer(quizReducer, initialQuizState);
+  const [error, setError] = useState<ServerError | null>(null)
+
+  useEffect(() => {
+    (async function(){
+      const user = await getUser();
+      console.log(user)
+      if('name' in user){
+        return setUser(user)
+      } setError(user)
+    })()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          <Header username={'Suraj'} score={state.score}/>
+          <h2>Current Question: {state.currentQuestionNo}</h2>
+          {user && <p>{user.name}</p>}
+          {error && <p>{error.errorMessage}</p>}
+          <div>
+            <button onClick={() => {
+              dispatch({ type: 'INCREMENT'})
+            }}>Answered it Right!</button>
+          </div>
+          <div>
+            <button onClick={() => {
+              dispatch({ type: 'DECREMENT' })
+            }}>Galti se mistake hogaya</button>
+          </div>          
+          <button onClick={() => {
+            dispatch({ type: 'RESET' })
+          }}>Reset</button>
+      
+      </div>
   );
 }
 
