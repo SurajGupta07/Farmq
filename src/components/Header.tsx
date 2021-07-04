@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-
 import { HeaderProps } from "../types/HeaderProps.types"
+
 export function Header({username, score}: HeaderProps){
     return(
         <div className="navbar">

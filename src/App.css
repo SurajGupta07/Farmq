@@ -1,16 +1,15 @@
-.App {
-  text-align: center;
+@import url("https://eloquentui.netlify.app/styles/app.css");
+
+.app {
+  background-color: #333335;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.questions {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+  text-align: center !important;
 }
 
 /* Header Styles */
@@ -18,12 +17,13 @@
   text-decoration: none;
   margin-left: 2rem;
   font-size: x-large;
-  color: #8B5CF6;
+  color: #fff;
 }
 
 .navbar {
   overflow: hidden;
-  background-color: #fff;
+  background-color: #333335;
+  color: #fff;
   position: fixed;
   top: 0;
   z-index: 4;
@@ -31,28 +31,29 @@
   width: 100%;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 15px 10px 0 rgb(0 0 0 / 30%);
 }
 
-.headerUser{
+.headerUser {
   margin: auto;
   text-decoration: none;
   font-size: xx-large;
   font-weight: 500;
-  color: #8B5CF6;
+  color: #fff;
 }
 
-.headerScore{
+.headerScore {
   margin-right: 1rem;
   text-decoration: none;
   font-size: xx-large;
   font-weight: 500;
-  color: #8B5CF6;
+  color: #fff;
 }
 
 /* Body */
 
-.bodyContainer{
-  margin-top: 7rem !important;
+.bodyContainer {
+  margin-top: 6rem !important;
   z-index: 5;
+  margin: auto;
 }
