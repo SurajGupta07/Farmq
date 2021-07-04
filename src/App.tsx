@@ -10,7 +10,7 @@ type ServerError = { errorMessage: string }
 
 async function getUser(): Promise<User | ServerError>{
  try {
-  const response = await axios.get<User>("https://be-ask.tanaypratap.repl.co/test");
+  const response = await axios.get<User>("https://Farmq-Backend.surajgupta07.repl.co");
   return response.data
  } catch (error){
     if(axios.isAxiosError(error)){
