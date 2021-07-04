@@ -1,48 +1,15 @@
-import { useState, useReducer, useEffect } from "react";
-import axios, { AxiosError } from "axios";
 import {Header} from "../components/Header"
-import { quizReducer, initialQuizState } from "../reducers/quiz-reducer"
-
-type User = { name: string, age: number }
-
-type ServerError = { errorMessage: string }
-
-async function getUser(): Promise<User | ServerError>{
-    try {
-     const response = await axios.get<User>("https://Farmq-Backend.surajgupta07.repl.co");
-     return response.data
-    } catch (error){
-       if(axios.isAxiosError(error)){
-         const serverError = ( error as AxiosError<ServerError> )
-         if(serverError && serverError.response){
-           return serverError.response.data
-         }
-       }
-       console.error(error)
-       return {errorMessage: "something went wrong"};
-   }
-   }
+import {useQuiz} from "../context/quiz-context"
 
 export function Questions(){
-    const [ user, setUser ] = useState<User | null>(null)
-    const [state, dispatch] = useReducer(quizReducer, initialQuizState);
-    const [error, setError] = useState<ServerError | null>(null)
-    
-    useEffect(() => {
-        (async function(){
-          const user = await getUser();
-          if('name' in user){
-            return setUser(user)
-          } setError(user)
-        })()
-      }, [])
+    let { user, error, dispatch, state} = useQuiz()
     return(
         <div className="App">
           <Header username={'Suraj'} score={state.score}/>
           <div className="bodyContainer">
           <h2>Current Question: {state.currentQuestionNo}</h2>
           {user && <p>{user.name}</p>}
-          {error && <p>{error.errorMessage}</p>}
+          {error && <p>Something Went Wrong</p>}
           <div>
             <button onClick={() => {
               dispatch({ type: 'INCREMENT'})
