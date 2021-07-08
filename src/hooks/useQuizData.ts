@@ -1,23 +1,29 @@
-import axios, { AxiosError } from "axios";
-import { User, ServerError } from "../types/quiz.types";
+import {useQuiz} from "../context/quiz-context"
 
 export const useQuizData = () => {
-    async function getUser(): Promise<User | ServerError>{
-        try {
-         const response = await axios.get<User>("https://Farmq-Backend.surajgupta07.repl.co");
-         return response.data
-        } catch (error){
-           if(axios.isAxiosError(error)){
-             const serverError = ( error as AxiosError<ServerError> )
-             if(serverError && serverError.response){
-               return serverError.response.data
-             }
-           }
-           console.error(error)
-           return {errorMessage: "Something went wrong"};
-       }
-       }
-       return{
-        getUser
-       }
+    let { dispatch, questionNumber, setQuestionNumber, quizList } = useQuiz();
+    let scoreChecker = (e) => {
+      if(quizList[questionNumber].isRight === e.target.outerText) {
+        dispatch({type: 'INCREMENT'})
+      } 
+      else {
+        dispatch({type: "DECREMENT"})
+      }
+    }
+
+    let resetQuiz = () => {
+      dispatch({type: "RESET"})
+      setQuestionNumber(0)
+    }
+
+    let incrementQuestion = () => {
+      dispatch({type: "NEXT_QUESTION"})
+      setQuestionNumber(questionNumber + 1)
+    }
+
+    return{
+    scoreChecker,
+    resetQuiz,
+    incrementQuestion
+    }
 }
