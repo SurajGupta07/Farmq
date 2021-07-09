@@ -59,6 +59,29 @@
   margin-bottom: 1rem;
 }
 
+/* Home */
+
+.home__block{
+  color: #fff;
+  margin-top: 4rem;
+  justify-content: center;
+  padding-top: 3rem;
+  text-align: center !important;
+  padding-left: 20rem;
+  padding-right: 20rem;
+  overflow: hidden; 
+}
+
+.home__image{
+  padding: 1rem 0rem 1rem 0rem;
+  height: 550px;
+  width: 550px;
+}
+
+.home__block__text{
+  padding: 0rem 1rem 1rem 1rem;
+}
+
 /* Body */
 
 .bodyContainer {
