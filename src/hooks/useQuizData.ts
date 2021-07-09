@@ -1,6 +1,8 @@
+import { useNavigate } from 'react-router-dom';
 import {useQuiz} from "../context/quiz-context"
 
 export const useQuizData = () => {
+    const navigate = useNavigate(); 
     let { dispatch, questionNumber, setQuestionNumber, quizList, state } = useQuiz();
     let scoreChecker = (e) => {
       if(quizList[questionNumber]?.isRight === e.target.outerText) {
@@ -13,13 +15,8 @@ export const useQuizData = () => {
       setQuestionNumber(questionNumber + 1)
       
       if(state.currentQuestionNo === quizList.length){
-        resetWithoutScore()
+        navigate('/result')
       }
-    }
-
-    let resetWithoutScore = () => {
-      dispatch({type: "RESET_QUIZ"})
-      setQuestionNumber(0)
     }
 
     let resetQuiz = () => {

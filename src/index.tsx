@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -8,11 +8,11 @@ import {QuizProvider} from "../src/context/quiz-context"
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
     <QuizProvider >
       <App />
     </QuizProvider>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

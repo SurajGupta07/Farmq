@@ -12,7 +12,6 @@ export function Header({username, score}: HeaderProps){
                 <button className="button-small"
                 onClick={() => resetQuiz()}>Reset</button>
             </div> 
-            <h3 className="headerScore">Score: {score}</h3>
         </div>
     )
 }
