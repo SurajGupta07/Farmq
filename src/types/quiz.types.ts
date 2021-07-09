@@ -28,7 +28,7 @@ export type TakenQuiz = {
     currentQuestionNo: number;
 };
   
-export type Action = { type: "INCREMENT" } | { type: "DECREMENT" } | { type: "RESET" } | { type: "NEXT_QUESTION" }
+export type Action = { type: "INCREMENT" } | { type: "DECREMENT" } | { type: "RESET" } | { type: "NEXT_QUESTION" } | {type: "RESET_QUIZ"}
   
 export type Dispatch = (action: Action) => void;
   

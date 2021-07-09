@@ -1,4 +1,4 @@
-export type Action =  { type: "RESET" } | { type: "INCREMENT" }  | { type: "DECREMENT" } | {type: "NEXT_QUESTION"};
+export type Action =  { type: "RESET" } | { type: "INCREMENT" }  | { type: "DECREMENT" } | {type: "NEXT_QUESTION"} | {type: "RESET_QUIZ"};
 
 export const initialQuizState = { score: 0, currentQuestionNo: 1  }
 
@@ -15,6 +15,9 @@ export function quizReducer(state: typeof initialQuizState, action: Action){
 
     case "NEXT_QUESTION":
       return { ...state, currentQuestionNo: state.currentQuestionNo + 1 }
+
+    case "RESET_QUIZ":
+      return { ...state, score: state.score, currentQuestionNo: 1 }
 
     default:
       return state;
